@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfyidy6u4xqyq"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_xfpgv"]
+[ext_resource type="Texture2D" uid="uid://dskimxfiipq22" path="res://assets/graphics/snake_spritesheet.png" id="2_51dmp"]
+[ext_resource type="Texture2D" uid="uid://cjlnleijq1t3t" path="res://assets/graphics/apple.png" id="3_sj8nh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xv8i"]
+resource_name = "Snake"
+texture = ExtResource("2_51dmp")
+texture_region_size = Vector2i(40, 40)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvwet"]
+resource_name = "Apple"
+texture = ExtResource("3_sj8nh")
+texture_region_size = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fx0i5"]
+tile_size = Vector2i(40, 40)
+sources/0 = SubResource("TileSetAtlasSource_7xv8i")
+sources/1 = SubResource("TileSetAtlasSource_rvwet")
+
+[node name="Game" type="Node"]
+script = ExtResource("1_xfpgv")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_fx0i5")
+cell_quadrant_size = 40
+format = 2
+layer_0/name = "Snake"
+layer_1/name = "Apples"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
