@@ -42,11 +42,10 @@ script = ExtResource("1_xfpgv")
 tile_set = SubResource("TileSet_fx0i5")
 cell_quadrant_size = 40
 format = 2
-layer_0/name = "Snake"
-layer_1/name = "Apples"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+layer_0/name = "Snake and Apple"
+
+[node name="SnakeTickTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="SnakeTickTimer" to="." method="_on_snake_tick_timer_timeout"]
