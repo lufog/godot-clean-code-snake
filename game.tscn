@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfyidy6u4xqyq"]
+[gd_scene load_steps=10 format=3 uid="uid://bfyidy6u4xqyq"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_xfpgv"]
+[ext_resource type="Texture2D" uid="uid://csxumv8fr58yx" path="res://assets/graphics/grass.png" id="2_0gxs5"]
 [ext_resource type="Texture2D" uid="uid://dskimxfiipq22" path="res://assets/graphics/snake_spritesheet.png" id="2_51dmp"]
 [ext_resource type="Texture2D" uid="uid://cjlnleijq1t3t" path="res://assets/graphics/apple.png" id="3_sj8nh"]
+[ext_resource type="PackedScene" uid="uid://ddvqo1wgi7tu8" path="res://score.tscn" id="5_n4l4q"]
+[ext_resource type="AudioStream" uid="uid://cmh2gp6clt0dd" path="res://assets/sound/crunch.wav" id="6_3xf4q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xv8i"]
 resource_name = "Snake"
@@ -38,6 +41,15 @@ sources/1 = SubResource("TileSetAtlasSource_rvwet")
 [node name="Game" type="Node"]
 script = ExtResource("1_xfpgv")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0gxs5")
+stretch_mode = 1
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_fx0i5")
 cell_quadrant_size = 40
@@ -47,5 +59,21 @@ layer_0/name = "Snake and Apple"
 [node name="SnakeTickTimer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="Score" parent="." instance=ExtResource("5_n4l4q")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CrunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3xf4q")
 
 [connection signal="timeout" from="SnakeTickTimer" to="." method="_on_snake_tick_timer_timeout"]
